@@ -45,6 +45,7 @@ class AuthenticationGenerator < Rails::Generators::Base
     migration_template "migrations/create_email_verification_tokens_migration.rb", "#{db_migrate_path}/create_email_verification_tokens.rb"
     migration_template "migrations/create_password_reset_tokens_migration.rb", "#{db_migrate_path}/create_password_reset_tokens.rb"
     migration_template "migrations/create_events_migration.rb", "#{db_migrate_path}/create_events.rb" if options.trackable?
+    migration_template "migrations/create_authorizations_migration.rb", "#{db_migrate_path}/create_authorizations.rb" if omniauthable?
   end
 
   def create_models
@@ -54,6 +55,7 @@ class AuthenticationGenerator < Rails::Generators::Base
     template "models/password_reset_token.rb", "app/models/password_reset_token.rb"
     template "models/current.rb", "app/models/current.rb"
     template "models/event.rb", "app/models/event.rb" if options.trackable?
+    template "models/authorization.rb", "app/models/event.rb" if omniauthable?
   end
 
   def create_fixture_file
